@@ -25,7 +25,7 @@ class Tour extends Component {
           summary,
           description,
         };
-        console.log("tour", tour);
+        
         this.setState({
           tour
         })
@@ -43,8 +43,8 @@ class Tour extends Component {
             <div className="cell small-6 medium-8 large-10">
               <img src={`${media && media.header? media.header.src:''}`}/>
               <p>{subtitle}</p>
-              <p>{`Summary: ${summary? summary: ''}`}</p>
-              <p>{description}</p>
+              <div dangerouslySetInnerHTML={{__html: summary }}></div>
+              <div dangerouslySetInnerHTML={{__html: description }}></div>
             </div>
           </div>
         </div>;

@@ -47,9 +47,8 @@ class City extends Component {
           </div>
           <img src={`${media.header.src}`}/>
           <div className="card-section">
-            <p>{subtitle}</p>
-            <p>{`Summary: ${summary}`}</p>
-            <p>{`Desc: ${description}`}</p>
+            <span>{subtitle}</span>
+            <div dangerouslySetInnerHTML={{__html: description }}></div>
           </div>
         </div>
       )
