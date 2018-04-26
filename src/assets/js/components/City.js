@@ -45,7 +45,7 @@ class City extends Component {
           <div className="card-divider">
             <h4><Link to={`/activity/${id}`}>{title}</Link></h4>
           </div>
-          <img src={`${media.header.src}`}/>
+          <img src={`${media.header.src.includes('http')? media.header.src: 'http://via.placeholder.com/350x150'}`}/>
           <div className="card-section">
             <span>{subtitle}</span>
             <div dangerouslySetInnerHTML={{__html: description }}></div>
@@ -57,7 +57,7 @@ class City extends Component {
 
     return (
     <div className="grid-container">
-      <div className="grid-x grid-padding-x small-up-2 medium-up-4 large-up-6">
+      <div className="grid-x grid-padding-x grid-margin-x small-up-2 medium-up-4 large-up-6">
         {toursElements}
       </div>
     </div>
