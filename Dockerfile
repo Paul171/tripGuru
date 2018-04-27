@@ -1,6 +1,7 @@
 FROM node:9
 RUN mkdir /app
 WORKDIR /app
+COPY . /app
 RUN rm -rf node_modeules/
 # Install yarn
 RUN apt-get update && apt-get install -y apt-transport-https
