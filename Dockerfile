@@ -1,6 +1,5 @@
 FROM node:9
 RUN mkdir /app
-COPY . /app
 WORKDIR /app
 RUN rm -rf node_modeules/
 # Install yarn
