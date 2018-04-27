@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 class Tour extends Component {
   constructor(props){
     super(props);
-    console.log("props", props);
     const { id } = props.match.params;
     this.state = {
       id,
@@ -12,11 +11,9 @@ class Tour extends Component {
   }
   componentDidMount() {
     const { id } = this.state;
-    console.log("id", id);
     fetch(`http://tour.api.thetripguru.com/tours/${id}`)
       .then(res => res.json())
       .then(data => {
-        console.log("data", data);
         const { summary, title, subtitle, description, media } = data.data.attributes;
         const tour = {
           title,
@@ -32,8 +29,8 @@ class Tour extends Component {
       })
   }
   render() {
-    console.log("this.state", this.state);
     const { summary, title, subtitle, description, media } = this.state.tour;
+    const imgSrc = media && media.header && media.header.src.includes('http')? media.header.src: 'http://via.placeholder.com/350x150';
     return this.state.tour
         && <div className="grid-container">
           <div className="grid-y">
@@ -41,7 +38,7 @@ class Tour extends Component {
               {title}
             </div>
             <div className="cell small-6 medium-8 large-10">
-              <img src={`${media && media.header? media.header.src:''}`}/>
+              <img src={`${imgSrc}`}/>
               <p>{subtitle}</p>
               <div dangerouslySetInnerHTML={{__html: summary }}></div>
               <div dangerouslySetInnerHTML={{__html: description }}></div>

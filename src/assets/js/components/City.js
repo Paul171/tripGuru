@@ -5,7 +5,6 @@ class City extends Component {
   constructor(props) {
     super(props);
     const { name } = props.match.params;
-    console.log("props", name);
     this.state = {
       name,
       tours: []
