@@ -1,4 +1,5 @@
 {
   "presets": ["env","react"],
-  "compact": false
+  "compact": false,
+  "plugins": ["transform-class-properties"]
 }

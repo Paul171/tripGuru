@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import fetch from 'isomorphic-fetch';
 class Tour extends Component {
   constructor(props){
     super(props);
@@ -11,14 +11,15 @@ class Tour extends Component {
   }
   componentDidMount() {
     const { id } = this.state;
-    fetch(`http://tour.api.thetripguru.com/tours/${id}`)
+    fetch(`http://tour.api.thetripguru.com/tours/${id}`, { mode: 'cors'})
       .then(res => res.json())
       .then(data => {
         const { summary, title, subtitle, description, media } = data.data.attributes;
+        const mediaUrl = Object.keys(media).find((mediaItem) => media[mediaItem].url && media[mediaItem].url !== "" );
         const tour = {
           title,
           subtitle,
-          media,
+          media: media[mediaUrl],
           summary,
           description,
         };
@@ -30,7 +31,7 @@ class Tour extends Component {
   }
   render() {
     const { summary, title, subtitle, description, media } = this.state.tour;
-    const imgSrc = media && media.header && media.header.src.includes('http')? media.header.src: 'http://via.placeholder.com/350x150';
+    const imgSrc = media && media && media.url.match(/.(png|gif|jpeg|jpg)$/)? media.url: 'http://via.placeholder.com/350x150';
     return this.state.tour
         && <div className="grid-container">
           <div className="grid-y">
