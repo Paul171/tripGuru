@@ -65,7 +65,7 @@ class City extends Component {
       )
     })
     
-    console.log("hasMore", hasMore);
+    
     return (
     <div className="grid-container">    
     <InfiniteScroll
